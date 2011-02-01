@@ -6,6 +6,6 @@ urlpatterns = patterns('',
     (r'douban/', include('doubanned.douban.urls')),
     (r'facebook/', include('doubanned.facebook.urls')),
 
-    (r'^static/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': STATIC_DOC_ROOT }),
+    #(r'^static/(?P<path>.*)$', 'django.views.static.serve', { 'document_root': STATIC_DOC_ROOT }),
     (r'^$', 'doubanned.views.default'),
 )

@@ -10,16 +10,14 @@ Google <a href="https://www.google.com/calendar">日历</a>和<a href="http://do
 </p>
 <p>
 {% if user %}
-<img src="#" id="icon" style="display:none;"/>
-欢迎您 <span id="nickname">{{ user.nickname }}</span> <span style="color:gray;font-size:smaller;">(如果 {{ user.email }}不是您的帐号，请<a href="{{ logout_url }}">登出</a>)</span>
-<script type="text/javascript">
-function ChangeIcon(profile) {
-    $('#icon').attr('src', profile.entry[0].thumbnailUrl)
-              .show();
-    $('#nickname').text(profile.entry[0].displayName);
-}
-</script>
-<script type="text/javascript" src="http://www.gravatar.com/{{ user.email|md5 }}.json?callback=ChangeIcon"></script>
+<div>
+    <div><img src="#" id="icon" style="display:none;"/></div>
+    <div>
+        欢迎您 <span id="nickname">{{ user.nickname }}</span> <span style="color:gray;font-size:smaller;">
+        <br/>
+        (如果 {{ user.email }}不是您的帐号，请<a href="{{ logout_url }}">登出</a>)</span>
+    </div>
+</div>
 <br/><br/>
 {% endif %}
 启用同步服务需要您的授权：
@@ -27,9 +25,9 @@ function ChangeIcon(profile) {
     <li>
         登录到您的Google帐号 ...
     {% if user %}
-        已登录到 {{ user.nickname }} 帐号
+        已登录到 <a href="http://www.google.com/profiles/{{ user.nickname }}">{{ user.nickname }}</a> 帐号{{ "ok"|icon }}
     {% else %}
-        <a href="{{ login_url }}">登录</a>
+        <a href="{{ login_url }}">登录</a>{{ "question"|icon }}
     {% endif %}
     </li>
     <li>授权访问您的豆瓣信息 ...
@@ -38,11 +36,11 @@ function ChangeIcon(profile) {
         {% for user in douban_users %}
             <a href="{{ user.uri }}"><img src="{{ user.icon }}" alt="{{ user.uid }}"/>{{ user.name }}</a>
         {% endfor %}
-        的授权
+        的授权{{ "ok"|icon }}
     {% else %}
         <a href="{{ "doubanned.douban.views.index"|reverse_url }}?KeepThis=true&TB_iframe=true&height=400&width=600"
            title="获取豆瓣授权"
-           class="thickbox">授权</a>
+           class="thickbox">授权</a>{{ "question"|icon }}
     {% endif %}
     </li>
     <li>授权访问您的Facebook信息 ...
@@ -52,10 +50,22 @@ function ChangeIcon(profile) {
 </ol>
 </p>
     
+{% if user %}
+<script type="text/javascript">
+function ChangeIcon(profile) {
+    $('#icon').attr('src', profile.entry[0].thumbnailUrl)
+              .show();
+    $('#nickname').text(profile.entry[0].displayName);
+}
+</script>
+<script type="text/javascript" src="http://www.gravatar.com/{{ user.email|md5 }}.json?callback=ChangeIcon"></script>
+{% endif %}
+
 <link rel="stylesheet" href="{{ "thickbox/thickbox.css"|static_url }}" type="text/css" media="screen" />
 {% if debug %}
 <script type="text/javascript" src="{{ "thickbox/thickbox.js"|static_url }}"></script>
 {% else %}
 <script type="text/javascript" src="{{ "thickbox/thickbox-min.js"|static_url }}"></script>
 {% endif %}
+    
 {% endblock %}

@@ -65,7 +65,7 @@ class DoubanUser(db.Model):
         if douban_users is None:
             douban_users = DoubanUser.all().filter('user =', user)
 
-            cached_user['douban'] = [user.dict() for user in douban_users]
+            cached_user['douban'] = [douban_user.dict() for douban_user in douban_users]
 
             memcache.set(user.email(), json.dumps(cached_user))
 

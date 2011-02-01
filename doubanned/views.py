@@ -16,7 +16,7 @@ def default(request):
     return render_to_response('index.html', {
         'debug': DEBUG,
         'user': user,
-        'douban_users': douban_users,
+        'douban_users': douban_users if douban_users else None,
         'login_url': users.create_login_url('/'),
         'logout_url': users.create_logout_url('/'),
     })
