@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import logging
 from google.appengine.api import users
 
 from django.shortcuts import render_to_response
