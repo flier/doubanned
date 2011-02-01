@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block body %}
+<p>
+Doubanned 是一个免费的自动信息同步服务，
+能够将你的<a href="http://www.douban.com">豆瓣</a>信息，
+定期同步到<a href="http://www.facebook.com">Facebook</a>、
+Google <a href="https://www.google.com/calendar">日历</a>和<a href="http://docs.google.com/">文档</a>。
+</p>
+<p>
+启用同步服务需要您的授权：
+<ol>
+    <li>
+        登录到您的Google帐号 ...
+    {% if user %}
+        <a href="{{ login_url }}">登录</a>
+    {% else %}
+        欢迎您 {{ user.email }}
+        (<a href="{{ logout_url }}">我不是 {{ user.nickname }}</a>)
+    {% endif %}
+    </li>
+    <li>授权访问您的豆瓣信息 ...
+    </li>
+    <li>授权访问您的Facebook信息 ...
+    </li>
+    <li>授权访问您的Google信息 ...
+    </li>
+</ol>
+</p>
+{% endblock %}

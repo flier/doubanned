@@ -1,15 +1,18 @@
 # Django settings for doubanned project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+DOUBANNED_DIR = os.path.dirname(os.path.abspath(__file__))
+
 ADMINS = (
-    # ('Your Name', 'your_email@domain.com'),
+    ('flier', 'flier.lu@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
+DATABASE_ENGINE = 'appengine'  # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'ado_mssql'.
 DATABASE_NAME = ''             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
@@ -62,14 +65,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.doc.XViewMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'doubanned.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(DOUBANNED_DIR, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -78,6 +80,22 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
 
+    'debug_toolbar',
+
     'doubanned.douban',
     'doubanned.facebook',
 )
+
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    #'debug_toolbar.panels.template.TemplateDebugPanel',
+    #'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+)
+
+INTERNAL_IPS = ('127.0.0.1',)

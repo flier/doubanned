@@ -1,0 +1,18 @@
+{% load i18n %}
+<table>
+	<thead>
+		<tr>
+			<th>{% trans "Key" %}</th>
+			<th>{% trans "Value" %}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in headers.items %}
+			<tr class="{% cycle djDebugOdd,djDebugEven %}">
+                {% for v in item %}
+				    <td>{{ v|escape }}</td>
+                {% endfor %}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>

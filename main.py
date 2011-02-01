@@ -1,6 +1,8 @@
 import os,os.path,sys
 os.environ['DJANGO_SETTINGS_MODULE'] = 'doubanned.settings'
 
+import debug_toolbar.appeng
+
 # Google App Engine imports.
 from google.appengine.ext.webapp import util
 
