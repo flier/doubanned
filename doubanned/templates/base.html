@@ -1,7 +1,17 @@
+{% load urlhelp %}
 <!DOCTYPE HTML>
 <html>
 <head>
     <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta name="keywords" content="{% block keywords %}{% endblock %}" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+{% if debug %}
+    <script type="text/javascript" src="{{ "js/jquery-1.4.4.js"|static_url }}"></script>
+{% else %}
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+{% endif %}
     {% block meta %}{% endblock %}
 </head>
 <body>

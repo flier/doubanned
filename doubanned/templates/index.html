@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load urlhelp %}
 
 {% block body %}
 <p>
@@ -17,12 +18,23 @@ Google <a href="https://www.google.com/calendar">日历</a>和<a href="http://do
     <li>
         登录到您的Google帐号 ...
     {% if user %}
-        done.
+        已登录到 {{ user.nickname }} 帐号
     {% else %}
         <a href="{{ login_url }}">登录</a>
     {% endif %}
     </li>
     <li>授权访问您的豆瓣信息 ...
+    {% if douban_users %}
+        已获得帐号
+        {% for user in douban_users %}
+            <a href="{{ user.uri }}"><img src="{{ user.icon }}" alt="{{ user.uid }}"/>{{ user.name }}</a>
+        {% endfor %}
+        的授权
+    {% else %}
+        <a href="{{ "doubanned.douban.views.index"|reverse_url }}?KeepThis=true&TB_iframe=true&height=400&width=600"
+           title="获取豆瓣授权"
+           class="thickbox">授权</a>
+    {% endif %}
     </li>
     <li>授权访问您的Facebook信息 ...
     </li>
@@ -30,4 +42,11 @@ Google <a href="https://www.google.com/calendar">日历</a>和<a href="http://do
     </li>
 </ol>
 </p>
+    
+<link rel="stylesheet" href="{{ "thickbox/thickbox.css"|static_url }}" type="text/css" media="screen" />
+{% if debug %}
+<script type="text/javascript" src="{{ "thickbox/thickbox.js"|static_url }}"></script>
+{% else %}
+<script type="text/javascript" src="{{ "thickbox/thickbox-min.js"|static_url }}"></script>
+{% endif %}
 {% endblock %}

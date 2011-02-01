@@ -50,6 +50,9 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
+STATIC_DOC_ROOT = os.path.join(DOUBANNED_DIR, 'static')
+STATIC_DOC_PREFIX = '/static/'
+
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'bq1grb(ihzv^2r=ww0#e8_m_r(yw9(dyqx1&v#vqw^kesah*ym'
 
@@ -84,6 +87,7 @@ INSTALLED_APPS = (
 
     'doubanned.douban',
     'doubanned.facebook',
+    'doubanned.utils',
 )
 
 DEBUG_TOOLBAR_PANELS = (
