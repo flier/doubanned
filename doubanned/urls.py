@@ -1,9 +1,7 @@
 from django.conf.urls.defaults import *
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^doubanned/', include('doubanned.foo.urls')),
-    (r'facebook/', 'doubanned.views.facebook'),
+    (r'facebook/', include('doubanned.facebook.urls')),
     (r'', 'doubanned.views.default'),
 
     # Uncomment this for admin:
