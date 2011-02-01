@@ -1,4 +1,4 @@
-import os,sys
+import os,os.path,sys
 os.environ['DJANGO_SETTINGS_MODULE'] = 'doubanned.settings'
 
 # Google App Engine imports.
