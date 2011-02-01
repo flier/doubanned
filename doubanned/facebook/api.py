@@ -10,7 +10,7 @@ except ImportError:
 import hmac
 from hashlib import sha256
 
-from facebook_key import *
+from key import *
 
 FACEBOOK_APP_NAME = 'doubanned'
 FACEBOOK_APP_CANVAS_PAGE = 'http://apps.facebook.com/doubanned/'
