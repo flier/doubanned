@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import hashlib
 
 from django import template
 from django.core.urlresolvers import reverse
@@ -15,5 +16,9 @@ def static_url(path):
 def reverse_url(name):
     return reverse(name)
 
+def md5(text):
+    return hashlib.md5(text).hexdigest()
+
 register.filter(static_url)
 register.filter(reverse_url)
+register.filter(md5)
